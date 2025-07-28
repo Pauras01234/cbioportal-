@@ -20,7 +20,6 @@ while True:
         print("Bot: Goodbye!")
         break
 
-    # 🔍 Use LLM to understand the intent
     response = query_llm(user_input)
 
     if not response or "task" not in response:
@@ -29,7 +28,7 @@ while True:
 
     task = response.get("task")
     gene = response.get("gene")
-    cancer_type = response.get("cancer_type", "LUAD")  # default to LUAD
+    cancer_type = response.get("cancer_type", "LUAD")  
 
     try:
         if task == "top_mutated_genes":
