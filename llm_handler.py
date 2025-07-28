@@ -16,20 +16,18 @@ from data_queries import (
     get_patient_count_by_stage,
 )
 
-# ── CLI args ────────────────────────────────────────────────────────────────────
 parser = argparse.ArgumentParser(description="cbio LLM-driven chatbot")
 parser.add_argument("--model", default="phi", help="Ollama model name")
 parser.add_argument("--timeout", type=int, default=180, help="LLM timeout in seconds")
 args = parser.parse_args()
 
-# ── Logging ─────────────────────────────────────────────────────────────────────
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 h = logging.StreamHandler()
 h.setFormatter(logging.Formatter("[%(asctime)s] %(levelname)s: %(message)s"))
 logger.addHandler(h)
 
-# ── Regex fallback for key patterns ─────────────────────────────────────────────
+
 def fallback_parse(q: str):
     q = q.lower().strip()
     # Top N least mutated genes
@@ -67,7 +65,6 @@ def fallback_parse(q: str):
         return "get_mrna_expression", {"gene": m.group(1).upper()}
     return None, None
 
-# ── LLM orchestration ────────────────────────────────────────────────────────────
 def call_llm(query: str, model: str, timeout: int) -> dict | None:
     prompt = (
         """
@@ -132,15 +129,15 @@ IMPORTANT: Output only the JSON object, nothing else.
         logger.error("LLM call failed: %s", e)
         return None
 
-# ── Dispatch & format ───────────────────────────────────────────────────────────
+
 def handle_query(raw: str) -> str:
-    # strip leading '>' and spaces
+   
     query = raw.lstrip("> ").strip()
 
-    # 1) Regex fallback first
+    
     tool, tool_args = fallback_parse(query)
 
-    # 2) Otherwise, ask the LLM
+    
     if tool is None:
         resp = call_llm(query, args.model, args.timeout) or {}
         low = {k.lower(): v for k, v in resp.items()}

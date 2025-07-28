@@ -5,7 +5,7 @@ from typing import List
 DB_CONFIG = {
     "host": "localhost",
     "user": "cbio_user",
-    "password": "rootpass",    # the password you set
+    "password": "rootpass",    
     "database": "cbio_luad"
 }
 
@@ -36,7 +36,7 @@ def get_least_mutated_genes(n: int) -> List[str]:
         GROUP BY gene
         ORDER BY COUNT(*) ASC
         LIMIT %s
-    """, (n if n > 0 else 10,))  # default bottom 10 if n=0
+    """, (n if n > 0 else 10,))  
     genes = [row[0] for row in cur.fetchall()]
     cn.close()
     return genes
