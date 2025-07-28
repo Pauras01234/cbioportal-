@@ -1,4 +1,4 @@
-# 🧬 cBioPortal Chatbot
+# cBioPortal Chatbot
 
 An LLM-powered chatbot that understands natural language questions and analyzes **LUAD (Lung Adenocarcinoma)** mutation and clinical data from cBioPortal.
 
@@ -10,7 +10,7 @@ Built using:
 
 ---
 
-## 🗂 Project Structure
+# Project Structure
 
 - `data/` - Processed mutation & expression files  
 - `luad_tcga/` - Extracted mutation & clinical TSV files  
@@ -25,7 +25,7 @@ Built using:
 
 ---
 
-## 🚀 How to Run
+# How to Run
 
 1. **Clone the repo**:
 
@@ -55,7 +55,7 @@ python chatbot.py
 
 ---
 
-## 🤖 Features
+# Features
 
 - Understands plain English questions
 - Handles gene mutation counts, top genes, expression summaries, and patient stats
@@ -63,14 +63,14 @@ python chatbot.py
 
 ---
 
-## 📊 Data Source
+# Data Source
 
 - Study: LUAD (Lung Adenocarcinoma, TCGA)
 - Source: [https://www.cbioportal.org/study/summary?id=luad_tcga](https://www.cbioportal.org/study/summary?id=luad_tcga)
 
 ---
 
-## 👤 Author
+# Author
 
 **Pauras Raut**  
 MSc in Genomic Data Science  
